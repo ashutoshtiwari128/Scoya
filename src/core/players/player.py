@@ -12,7 +12,7 @@ class Player(ABC):
 
         self.__name: str = name
         self._position: int = initial_position
-        
+
         # Mapping of TransportType to the remaining tickets for that transport
         self._tickets: dict[TransportType, int] = initial_tickets
 
@@ -23,11 +23,11 @@ class Player(ABC):
     @property
     def position(self) -> int:
         return self._position
-    
+
     @property
     def tickets(self) -> dict[str, int]:
         return self._tickets
-    
+
     def move(self, next_position: int, transport_type: TransportType) -> None:
         self.__validate_move(next_position, transport_type)
         # TODO: Add logic to update position and tickets.

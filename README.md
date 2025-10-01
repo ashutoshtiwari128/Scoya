@@ -16,10 +16,10 @@
     `deactivate`
 
 ## Code styling
-- Run ruff check for linting and formatting.
+- Check for linting and formatting.
 
     `ruff check .`
 
-- Run ruff format for fixing linting and formatting.
+- Fix linting and formatting.
 
-    `ruff format .`
+    `ruff check . --fix`

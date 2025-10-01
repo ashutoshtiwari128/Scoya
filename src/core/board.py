@@ -8,7 +8,7 @@ class Board:
     @property
     def transport_adjacency(self):
         return self.__transport_adjacency
-    
+
     def get_possible_destinations(self, current_position: int, ticket: Ticket) -> List[int]:
         if type(ticket) is DoubleTicket:
             possible_destinations = []
@@ -24,4 +24,3 @@ class Board:
 
     def __get_neighbours(self, current_position: int, ticket: Ticket) -> List[int]:
         return self.__transport_adjacency[ticket.transport_type][current_position]
-
