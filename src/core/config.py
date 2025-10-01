@@ -1,4 +1,4 @@
-from transport_type import TransportType
+from core.transport import TransportType
 
 MAXIMUM_MOVES = 25
 

@@ -1,5 +1,5 @@
 from abc import ABC
-from transport_type import TransportType
+from core.transport import TransportType
 
 class Player(ABC):
     """
@@ -19,7 +19,7 @@ class Player(ABC):
     @property
     def name(self) -> str:
         return self.__name
-    
+
     @property
     def position(self) -> int:
         return self._position

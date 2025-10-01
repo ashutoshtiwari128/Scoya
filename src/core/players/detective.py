@@ -1,4 +1,4 @@
-from player import Player
+from core.players.player import Player
 from config import DETECTIVE_INITIAL_TICKETS
 
 class Detective(Player):
