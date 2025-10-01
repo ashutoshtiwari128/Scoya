@@ -1,6 +1,6 @@
-from player import Player
-from config import MRX_INITIAL_TICKETS, NUMBER_OF_2X_TICKETS
-from transport_type import TransportType
+from core.players.player import Player
+from core.config import MRX_INITIAL_TICKETS, NUMBER_OF_2X_TICKETS
+from core.transport import TransportType
 
 class MrX(Player):
     """

@@ -14,3 +14,12 @@
 - To deactivate the virtual enviornment when required
 
     `deactivate`
+
+## Code styling
+- Check for linting and formatting.
+
+    `ruff check .`
+
+- Fix linting and formatting.
+
+    `ruff check . --fix`
