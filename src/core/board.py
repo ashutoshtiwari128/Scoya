@@ -1,5 +1,7 @@
-from core.transport import TransportType, Ticket, DoubleTicket
 from typing import List
+
+from core.transport import DoubleTicket, Ticket, TransportType
+
 
 class Board:
     def __init__(self, transport_adjacency: dict[TransportType, List[List[int]]]):

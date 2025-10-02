@@ -1,20 +1,29 @@
-from abc import ABC
-from core.transport import TransportType
+from abc import ABC, abstractmethod
+
+from core.board import Board
+from core.exceptions import InvalidMove
+from core.transport import DoubleTicket, Ticket, TransportType
+
 
 class Player(ABC):
     """
     Abstract class for any player.
     """
-    # TODO: Take game board as input for making moves
-    def __init__(self, name: str, initial_position: int, initial_tickets: dict[TransportType, int]) -> None:
+    @abstractmethod
+    def __init__(
+            self,
+            name: str,
+            initial_position: int,
+            initial_tickets: dict[TransportType, int],
+            game_board: Board) -> None:
+
         if initial_position <= 0:
             raise ValueError(f"Position expected to be positive but recieved {initial_position} for {name}")
 
         self.__name: str = name
         self._position: int = initial_position
-
-        # Mapping of TransportType to the remaining tickets for that transport
         self._tickets: dict[TransportType, int] = initial_tickets
+        self._game_board: Board = game_board
 
     @property
     def name(self) -> str:
@@ -28,11 +37,16 @@ class Player(ABC):
     def tickets(self) -> dict[str, int]:
         return self._tickets
 
-    def move(self, next_position: int, transport_type: TransportType) -> None:
-        self.__validate_move(next_position, transport_type)
-        # TODO: Add logic to update position and tickets.
-
-    # Private methods
-    def __validate_move(self, next_position: int, transport_type: TransportType) -> None:
-        # TODO: Add validation logic.
+    @abstractmethod
+    def move(self, ticket: Ticket) -> None:
         pass
+
+    def _validate_move_inputs_common(self, ticket: Ticket):
+        if ticket is None:
+            raise TypeError("Null ticket.")
+
+        if ticket.destination_position <= 0:
+            raise ValueError(f"Invalid destination position {ticket.destination_position}")
+
+        if not self._game_board.is_valid_destination(self._position, ticket):
+            raise InvalidMove(ticket)

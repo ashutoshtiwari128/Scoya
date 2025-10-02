@@ -2,7 +2,7 @@ from core.transport import TransportType
 
 MAXIMUM_MOVES = 25
 
-NUMBER_OF_2X_TICKETS = 2
+INITIAL_NUMBER_OF_2X_TICKETS = 2
 
 DETECTIVE_INITIAL_TICKETS: dict[TransportType, int] = {
     TransportType.TAXI: 10,
