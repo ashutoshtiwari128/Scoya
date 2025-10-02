@@ -12,7 +12,11 @@ class MrX(Player):
     def __self__(self, name: str, initial_position: int):
         super().__init__(name=name, initial_position=initial_position, initial_tickets=MRX_INITIAL_TICKETS)
 
-        self.number_of_2x_tickets = INITIAL_NUMBER_OF_2X_TICKETS
+        self.__number_of_2x_tickets = INITIAL_NUMBER_OF_2X_TICKETS
+
+    @property
+    def number_of_2x_tickets(self):
+        return self.__number_of_2x_tickets
 
     def move(self, ticket: Ticket) -> None:
         self.__validate_move_inputs(ticket)
@@ -20,12 +24,12 @@ class MrX(Player):
         self._position = ticket.destination_position
         self._tickets[ticket.transport_type] -= 1
         if type(ticket) is DoubleTicket:
-            self.number_of_2x_tickets -= 1
+            self.__number_of_2x_tickets -= 1
 
     def __validate_move_inputs(self, ticket: Ticket):
         if self.tickets[ticket.transport_type] <= 0:
             raise InsufficientTickets(ticket)
-        if type(ticket) is DoubleTicket and self.number_of_2x_tickets <= 0:
+        if type(ticket) is DoubleTicket and self.__number_of_2x_tickets <= 0:
             raise InsufficientDoubleTickets
 
         self._validate_move_inputs_common(ticket)
