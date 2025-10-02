@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
-from core.transport import TransportType, Ticket, DoubleTicket
+
 from core.board import Board
 from core.exceptions import InvalidMove
+from core.transport import DoubleTicket, Ticket, TransportType
+
 
 class Player(ABC):
     """

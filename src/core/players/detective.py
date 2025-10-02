@@ -1,7 +1,8 @@
-from core.players.player import Player
-from core.transport import Ticket, DoubleTicket
-from core.exceptions import *
 from core.config import DETECTIVE_INITIAL_TICKETS
+from core.exceptions import *
+from core.players.player import Player
+from core.transport import DoubleTicket, Ticket
+
 
 class Detective(Player):
     """

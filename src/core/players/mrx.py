@@ -1,7 +1,8 @@
-from core.players.player import Player
-from core.config import MRX_INITIAL_TICKETS, INITIAL_NUMBER_OF_2X_TICKETS
-from core.transport import Ticket, DoubleTicket
+from core.config import INITIAL_NUMBER_OF_2X_TICKETS, MRX_INITIAL_TICKETS
 from core.exceptions import *
+from core.players.player import Player
+from core.transport import DoubleTicket, Ticket
+
 
 class MrX(Player):
     """
@@ -23,8 +24,8 @@ class MrX(Player):
 
     def __validate_move_inputs(self, ticket: Ticket):
         if self.tickets[ticket.transport_type] <= 0:
-                raise InsufficientTickets(ticket)
+            raise InsufficientTickets(ticket)
         if type(ticket) is DoubleTicket and self.number_of_2x_tickets <= 0:
-                raise InsufficientDoubleTickets
+            raise InsufficientDoubleTickets
 
         self._validate_move_inputs_common(ticket)

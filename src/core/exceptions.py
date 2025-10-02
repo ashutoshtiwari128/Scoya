@@ -1,5 +1,6 @@
 from core.transport import Ticket
 
+
 class InvalidMove(Exception):
     def __init__(self, message, ticket: Ticket):
         super().__init__(message)
