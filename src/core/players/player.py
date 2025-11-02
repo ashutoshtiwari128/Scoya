@@ -14,8 +14,8 @@ class Player(ABC):
             self,
             name: str,
             initial_position: int,
-            initial_tickets: dict[TransportType, int],
-            game_board: Board) -> None:
+            game_board: Board,
+            initial_tickets: dict[TransportType, int]) -> None:
 
         if initial_position <= 0:
             raise ValueError(f"Position expected to be positive but recieved {initial_position} for {name}")
@@ -34,7 +34,7 @@ class Player(ABC):
         return self._position
 
     @property
-    def tickets(self) -> dict[str, int]:
+    def tickets(self) -> dict[TransportType, int]:
         return self._tickets
 
     @abstractmethod

@@ -1,3 +1,4 @@
+from core.board import Board
 from core.config import INITIAL_NUMBER_OF_2X_TICKETS, MRX_INITIAL_TICKETS
 from core.exceptions import *
 from core.players.player import Player
@@ -9,8 +10,12 @@ class MrX(Player):
     Class of the Mr. X player. The goal of Mr. X is to evade the detectives by making valide moves until the end of
     the game.
     """
-    def __self__(self, name: str, initial_position: int):
-        super().__init__(name=name, initial_position=initial_position, initial_tickets=MRX_INITIAL_TICKETS)
+    def __self__(self, name: str, initial_position: int, game_board: Board):
+        super().__init__(
+            name=name,
+            initial_position=initial_position,
+            game_board=game_board,
+            initial_tickets=MRX_INITIAL_TICKETS)
 
         self.__number_of_2x_tickets = INITIAL_NUMBER_OF_2X_TICKETS
 
