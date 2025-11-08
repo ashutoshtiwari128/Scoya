@@ -1,6 +1,6 @@
-from core.transport import TransportType
+from .transport import TransportType
 
-MAXIMUM_MOVES = 25
+MAXIMUM_MOVES = 22
 
 INITIAL_NUMBER_OF_2X_TICKETS = 2
 
