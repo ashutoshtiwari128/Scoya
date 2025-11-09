@@ -1,1 +1,4 @@
 ruff==0.13.2
+numpy>=2
+ipykernel>=6
+matplotlib>=3

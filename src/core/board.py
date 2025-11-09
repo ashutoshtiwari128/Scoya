@@ -1,6 +1,6 @@
 from typing import List
 
-from core.transport import DoubleTicket, Ticket, TransportType
+from .transport import DoubleTicket, Ticket, TransportType
 
 
 class Board:
@@ -17,19 +17,33 @@ class Board:
         return self.__transport_adjacency
 
     def is_valid_destination(self, current_position: int, ticket: Ticket) -> bool:
-        possible_destinations = self.get_possible_destinations(current_position, ticket)
+        possible_destinations = self.get_possible_destinations(
+            current_position,
+            ticket.transport_type,
+            type(ticket) is DoubleTicket)
         return ticket.destination_position in possible_destinations
 
-    def get_possible_destinations(self, current_position: int, ticket: Ticket) -> List[int]:
+    def get_possible_destinations(
+            self,
+            current_position: int,
+            transport_type: TransportType,
+            is_double_ticket_available: bool) -> List[int]:
         #TODO: For black ticket take union of all other transport type as well.
-        if type(ticket) is DoubleTicket:
+        if is_double_ticket_available:
             possible_destinations = []
-            for first_stop in self.__get_neighbours(current_position, ticket.transport_type):
+            for first_stop in self.__get_neighbours(current_position, transport_type):
                 # TODO: Fix: appending to list will lead to duplication.
-                possible_destinations.extend(self.__get_neighbours(first_stop, ticket.transport_type))
+                possible_destinations.extend(self.__get_neighbours(first_stop, transport_type))
             return possible_destinations
         else:
-            return self.__get_neighbours(current_position, ticket.transport_type)
+            return self.__get_neighbours(current_position, transport_type)
+
+    def get_possible_transport_types(self, current_position) -> List[TransportType]:
+        result: List[TransportType] = []
+        for transport_type in TransportType:
+            if len(self.__transport_adjacency[transport_type][current_position]) > 0:
+                result.append(transport_type)
+        return result
 
     def __get_neighbours(self, current_position: int, transport_type: TransportType) -> List[int]:
         return self.__transport_adjacency[transport_type][current_position]
